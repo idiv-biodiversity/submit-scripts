@@ -10,7 +10,7 @@
   exit 0
 }
 
-source /global/submit-scripts/util.sh
+source $(dirname $0)/util.sh
 source /etc/profile.d/000-modules.sh
 module load parallel
 module load pigz
