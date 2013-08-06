@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#$ -S /bin/bash
+
+#$ -o /work/$USER/$JOB_NAME-$JOB_ID.log
+#$ -j y
+
+source /global/submit-scripts/util.sh
+source /etc/profile.d/000-modules.sh
+module load parallel
+module load pigz
+
+[[ -z $1 ]] && exit 1
+
+TRACE=$1
+
+traced-pids() {
+  read-from "$TRACE" | awk '{ print $1 }' | sort -un
+}
+
+traced-pids | parallel -j ${NSLOTS:-1} "read-from '$TRACE' | awk '\$1 ~ /^{}$/ { \$1 = \"\"; print }' | strace-analyzer --short > '$TRACE-analyzed-{}'"
