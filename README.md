@@ -26,7 +26,11 @@ Submit any of the scripts with an additional environment variable `TRACE` set, e
 
 If this environment variable is set, [strace][] will be used to create a compressed system trace of
 the main application used in the script. This trace can later be analyzed by using the
-[strace-analyzer][] script.
+[strace-analyzer][] script. Since these traces may be rather large in terms of file size, the traces
+are always compressed. Since analyzing the traces might take some time, there is also a ready-to-use
+strace-analyzer submit script:
+
+    qsub [submit-args] strace-analyzer /path/to/trace.gz
 
 
 [modules]: http://modules.sourceforge.net/
