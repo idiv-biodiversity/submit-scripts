@@ -14,9 +14,9 @@ source /global/submit-scripts/util.sh
 source /etc/profile.d/000-modules.sh
 module load ncbi-blast
 
-INPUT=$1    ; shift
+QUERY=$1    ; shift
 BLAST_DB=$1 ; shift
 
 OUTPUT=$OUTPUT_DIR/result
 
-${TRACE:+tracer} tblastn -query $INPUT -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" -out $OUTPUT
+${TRACE:+tracer} tblastn -query $QUERY -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" -out $OUTPUT
