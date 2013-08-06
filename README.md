@@ -37,10 +37,10 @@ request the job to be parallel by say supplying `-pe smp 12` as part of your sub
 application will use 12 threads / processes / cores. All scripts are written so this is done
 automatically.
 
-Example tblastn
----------------
+Example tblastn-bare
+--------------------
 
-The `tblastn` script has two mandatory arguments, the query and the database, while all other
+The `tblastn-bare` script has two mandatory arguments, the query and the database, while all other
 arguments get supplied directly to `tblastn`, e.g.:
 
     qsub [submit-args] tblastn-bare query chr1.fa -word_size 3 -outfmt 6 -evalue 10
