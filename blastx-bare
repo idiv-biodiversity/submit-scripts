@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#$ -S /bin/bash
+
+#$ -o /work/$USER/$JOB_NAME-$JOB_ID.log
+#$ -j y
+
+source /global/submit-scripts/util.sh
+source /etc/profile.d/000-modules.sh
+module load ncbi-blast
+
+INPUT=$1    ; shift
+BLAST_DB=$1 ; shift
+
+OUTPUT=$OUTPUT_DIR/result
+
+${TRACE:+tracer} blastx -query $INPUT -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" -out $OUTPUT
