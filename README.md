@@ -3,6 +3,36 @@ Submit Scripts
 
 This is a collection of ready-to-use submit scripts for high performance computing clusters.
 
+Motivation
+----------
+
+Not all users know both their applications and scripting well enough to get the most out of their
+applications and to reduce the amount of maintenance they have with their scripts. The submit
+scripts provided by this project can be used almost as easy as the applications they are
+wrapping. They also consider many pitfalls and provide automatic ways to handle them, some of them
+are:
+
+-   Using parameters for the submit scripts themselves greatly reduces the amount of submit scripts
+    needed and thus the potential for bit rot, error and maintenance. All provided submit scripts
+    accept various arguments to reduce the need to *hard-code* configuration (like the path to the
+    input file) in the script. Thus, the submission of the jobs defines them instead of the script
+    itself: a submit script should be just a convenient wrapper for the application it executes.
+
+-   Automatically handling the degree of parallelism reduces the amount of misappropriated
+    resources. It certainly may happen that users submit jobs with a different degree of parallelism
+    than the internal application is using. This may lead to either an overloaded system or an
+    under-utilized system. By automatically considering the submission requests these issues can be
+    avoided.
+
+-   Handling I/O becomes more and more a problem with the distributed / networked file systems used
+    by computing clusters. If an application needs lots of IOPS to read or write a certain block of
+    data where this could have been done with fewer IOPS performance might degrade considerably. The
+    provided submit scripts are designed to both work around this problem by wrapping reading and
+    writing files with better block sizes and working with compressed data as much as possible.
+
+Also, there is a small **Submit Script API** used by most of the scripts to handle common
+problems. This API can be used to write additional submit scripts more easily.
+
 Requirements
 ------------
 
