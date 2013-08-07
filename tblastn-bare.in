@@ -10,7 +10,7 @@
   exit 0
 }
 
-source $(dirname $0)/util.sh
+source @prefix@/lib/util.sh
 source /etc/profile.d/000-modules.sh
 module load ncbi-blast
 

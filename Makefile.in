@@ -1,0 +1,12 @@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+libdir = @libdir@
+
+clean:
+	rm -f blastn blastn-bare blastx blastx-bare strace-analyzer tblastn tblastn-bare
+
+install:
+	install -d ${bindir} ${libdir}
+	install -m 644 util.sh ${libdir}
+	install -m 644 blastn blastn-bare blastx blastx-bare strace-analyzer tblastn tblastn-bare ${bindir}
