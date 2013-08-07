@@ -63,7 +63,7 @@ write-to-pigz() {
 write-to() {
   local output="$1"
 
-  mkdir -p $(dirname "output")
+  mkdir -p "$(dirname "$output")"
 
   case "$output" in
     *.gz)
