@@ -44,6 +44,15 @@ Requirements
 - some scripts may require non-standard tools like [pigz][] or [GNU Parallel][parallel]
 
 
+Installation
+============
+
+    git clone git://github.com/wookietreiber/submit-scripts.git
+    autoconf
+    ./configure --prefix=/path/to/target
+    make install
+
+
 Usage
 =====
 
