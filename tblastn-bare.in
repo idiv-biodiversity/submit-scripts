@@ -17,6 +17,7 @@ module load ncbi-blast
 QUERY=$1    ; shift
 BLAST_DB=$1 ; shift
 
+mkdir -p $OUTPUT_DIR
 OUTPUT=$OUTPUT_DIR/result
 
 ${TRACE:+tracer} tblastn -query $QUERY -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" -out $OUTPUT
