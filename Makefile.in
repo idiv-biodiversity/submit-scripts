@@ -1,12 +1,42 @@
-prefix = @prefix@
+prefix      = @prefix@
 exec_prefix = @exec_prefix@
-bindir = @bindir@
-libdir = @libdir@
+bindir      = @bindir@
+libdir      = @libdir@
+datadir     = @datadir@
+srcdir      = @srcdir@
+
+INSTALL         = @INSTALL@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_SCRIPT  = @INSTALL_SCRIPT@
+SED             = @SED@
+
+PACKAGE_NAME = @PACKAGE_NAME@
+
+libs =  util.sh
+scripts = blastn blastn-bare blastx blastx-bare strace-analyzer tblastn tblastn-bare
+
+sedit = $(SED) -e 's|@libdir[@]|$(libdir)|g' -e 's|@datadir[@]|$(datadir)|g'
+
+default: all
+
+all: $(libs) $(scripts)
+
+$(libs):
+	$(sedit) $(srcdir)/$@ > $@
+
+$(scripts):
+	$(sedit) $(srcdir)/$@.sh > $@
+	$(sedit) -e 's|@submitscript[@]|$@|g' $(srcdir)/submit-wrapper.sh > submit-$@
+	chmod +x submit-$@
 
 clean:
-	rm -f blastn blastn-bare blastx blastx-bare strace-analyzer tblastn tblastn-bare
+	rm -f $(libs) $(scripts)
 
 install:
-	install -d ${bindir} ${libdir}
-	install -m 644 util.sh ${libdir}
-	install -m 644 blastn blastn-bare blastx blastx-bare strace-analyzer tblastn tblastn-bare ${bindir}
+	$(INSTALL) -d ${bindir} ${libdir}/$(PACKAGE_NAME) ${datadir}/$(PACKAGE_NAME)
+	$(INSTALL_DATA) $(libs) ${libdir}/$(PACKAGE_NAME)/
+	$(INSTALL_DATA) $(scripts) ${datadir}/$(PACKAGE_NAME)/
+	$(INSTALL_PROGRAM) $(addprefix submit-,$(scripts)) ${bindir}/
+
+.PHONY: all clean default
