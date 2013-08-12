@@ -1,3 +1,5 @@
-AC_INIT
-AC_CONFIG_FILES([Makefile] [blastn] [blastn-bare] [blastx] [blastx-bare] [strace-analyzer] [tblastn] [tblastn-bare] [util.sh])
+AC_INIT([submit-scripts], [0.1.0])
+AC_PROG_INSTALL
+AC_PROG_SED
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

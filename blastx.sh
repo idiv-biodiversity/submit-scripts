@@ -10,7 +10,7 @@
   exit 0
 }
 
-source @prefix@/lib/util.sh
+source @libdir@/submit-scripts/util.sh
 source /etc/profile.d/000-modules.sh
 module load ncbi-blast
 module load pigz
