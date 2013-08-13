@@ -23,11 +23,11 @@ default: all
 all: $(libs) $(scripts)
 
 $(libs):
-	$(sedit) $(srcdir)/$@ > $@
+	$(sedit) $(srcdir)/src/main/shell/$@ > $@
 
 $(scripts):
-	$(sedit) $(srcdir)/$@.sh > $@
-	$(sedit) -e 's|@submitscript[@]|$@|g' $(srcdir)/submit-wrapper.sh > submit-$@
+	$(sedit) $(srcdir)/src/main/script/$@.sh > $@
+	$(sedit) -e 's|@submitscript[@]|$@|g' $(srcdir)/src/main/template/submit-wrapper.sh > submit-$@
 	chmod +x submit-$@
 
 clean:
@@ -38,5 +38,3 @@ install:
 	$(INSTALL_DATA) $(libs) ${libdir}/$(PACKAGE_NAME)/
 	$(INSTALL_DATA) $(scripts) ${datadir}/$(PACKAGE_NAME)/
 	$(INSTALL_PROGRAM) $(addprefix submit-,$(scripts)) ${bindir}/
-
-.PHONY: all clean default
