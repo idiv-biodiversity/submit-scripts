@@ -56,14 +56,35 @@ Installation
 Usage
 =====
 
-The general usage is, of course, as follows:
+Since this project relies on a [Environment Modules][modules] installation anyway there is also a
+module file:
 
-    qsub [submit-args] script [script-args]
+    module load submit-scripts
 
-To get help on a specific submit script just execute it directly (do not submit it) with only the
-`--help` argument:
+There are two ways to submit a job with the provided scripts:
 
-    bash script --help
+1.  Submit a script directly:
+
+    The general usage to submit a script directly is as follows:
+
+        qsub [submit-args] /path/to/share/submit-scripts/app [app-args]
+
+2.  Execute a submit script wrapper:
+
+        submit-app [app-args]
+
+    Give it submit arguments explicitly:
+
+        SUBMIT_OPTS="submit-args" submit-app [app-args]
+
+    Give it submit arguments implicitly (by setting the shell variable):
+
+        export SUBMIT_OPTS="submit-args"
+        submit-app [app-args]
+
+To get help on a specific submit script just execute the wrapper with the `--help` argument:
+
+    submit-app --help
 
 Most scripts have some required arguments, like an input file. All other arguments get passed
 directly to the main application used in the script.
