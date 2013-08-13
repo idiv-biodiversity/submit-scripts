@@ -105,6 +105,10 @@ arguments get supplied directly to `tblastn`, e.g.:
 
     qsub [submit-args] tblastn-bare query chr1.fa -word_size 3 -outfmt 6 -evalue 10
 
+Alternatively:
+
+    [SUBMIT_OPTS="submit-args"] submit-tblastn-bare query chr1.fa -word_size 3 -outfmt 6 -evalue 10
+
 - `query` becomes the input query to `tblastn`
 - `chr1.fa` becomes the database
 - the degree of parallelism gets chosen automatically (see above)
