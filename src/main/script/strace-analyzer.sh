@@ -5,7 +5,7 @@
 #$ -o /work/$USER/$JOB_NAME-$JOB_ID.log
 #$ -j y
 
-[[ $1 = "--help" || $1 = "-h" ]] && {
+[[ $1 = "-h" || $1 = "-help" || $1 = "--help" ]] && {
   echo "usage: <submit-command> [submit-args] $0 /path/to/trace.gz"
   exit 0
 }
