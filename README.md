@@ -43,6 +43,19 @@ Requirements
   [Environment Modules][modules] installation
 - some scripts may require non-standard tools like [pigz][] or [GNU Parallel][parallel]
 
+Supported Applications
+----------------------
+
+The following applications are supported:
+
+- blastn
+- blastx
+- tblastn
+- vcftools
+
+The following helpful utilities are supported:
+
+- strace-analyzer
 
 Installation
 ============
