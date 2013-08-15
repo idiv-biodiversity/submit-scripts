@@ -55,6 +55,7 @@ The following applications are supported:
 
 The following helpful utilities are supported:
 
+- archiver: builds an archive file and verifies it efficiently
 - strace-analyzer
 
 Installation
