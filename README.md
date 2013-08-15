@@ -50,6 +50,7 @@ The following applications are supported:
 
 - blastn
 - blastx
+- segemehl
 - tblastn
 - vcftools
 
