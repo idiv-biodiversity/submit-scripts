@@ -43,6 +43,28 @@ Requirements
   [Environment Modules][modules] installation
 - some scripts may require non-standard tools like [pigz][] or [GNU Parallel][parallel]
 
+Supported Applications
+----------------------
+
+The following applications are supported:
+
+- blastn
+- blastx
+- segemehl
+- tblastn
+- vcftools
+
+The following helpful utilities are supported:
+
+- archiver: builds an archive file and verifies it efficiently
+- strace-analyzer
+
+Issues, Feature Requests and Contributions
+------------------------------------------
+
+You are very welcome to open issues if something does not work the way you like, request features if
+you would really like some particular functionality or even better contribute it yourself. Please
+use the GitHub facilities [Issues][] and [Pull Requests][] for this.
 
 Installation
 ============
@@ -139,6 +161,8 @@ strace-analyzer submit script:
 [parallel]: http://www.gnu.org/software/parallel/
 [strace]: http://strace.sourceforge.net/
 [strace-analyzer]: http://clusterbuffer.wordpress.com/strace-analyzer/
+[Issues]: https://github.com/wookietreiber/submit-scripts/issues
+[Pull Requests]: https://github.com/wookietreiber/submit-scripts/pulls
 
 
 ---
