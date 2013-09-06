@@ -13,7 +13,7 @@ Submit the job without submit arguments:
 
 or explicitly with submit arguments:
 
-    [SUBMIT_OPTS="submit-args"] $(basename $0) [app-args]
+    SUBMIT_OPTS="submit-args" $(basename $0) [app-args]
 
 or implicitly with submit arguments from the shell variable:
 
