@@ -50,8 +50,10 @@ The following applications are supported:
 
 - blastn
 - blastx
+- cutadapt
 - segemehl
 - tblastn
+- tophat
 - vcftools
 
 The following helpful utilities are supported:
