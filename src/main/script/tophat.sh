@@ -16,7 +16,7 @@ required arguments
 automatic arguments (do not supply!)
 
     -p | --num-threads             set according to request
-    -o | --output-dir              set to /work/$USER/$JOB_NAME-$JOB_ID
+    -o | --output-dir              set to /work/$USER/tophat-\$JOB_ID
 
 EOF
 exit 0
