@@ -49,6 +49,7 @@ Supported Applications
 The following applications are supported:
 
 - blastn
+- blastp
 - blastx
 - cutadapt
 - segemehl
