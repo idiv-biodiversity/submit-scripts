@@ -51,6 +51,7 @@ The following applications are supported:
 - blastn
 - blastp
 - blastx
+- cufflinks
 - cutadapt
 - segemehl
 - tblastn
