@@ -109,7 +109,7 @@ echo "[$(date)] [INFO] Creating the archive $ARCHIVE ..."
 
 [[ -n $VERBOSE ]] && echo "[$(date)] [DEBUG] tar c $DATA -b 2048 | write-to $ARCHIVE"
 
-tar c $DATA -b 2048 | write-to "$ARCHIVE"
+tar c "$DATA" -b 2048 | write-to "$ARCHIVE"
 pipe_bailout $LINENO
 
 # ------------------------------------------------------------------------------
