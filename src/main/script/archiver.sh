@@ -12,7 +12,7 @@
 # function to display usage
 usage() { cat << EOF
 Usage:
-  <submit-command> [submit-args] $0 [-v] [-c hash] /path/to/data-dir/ /path/to/archive.tar.gz
+  <submit-command> [submit-args] $0 [-v] /path/to/data-dir/ /path/to/archive.tar.gz
 
   -h | -help | --help           shows this help text
 
@@ -21,10 +21,6 @@ Usage:
 
   archive.tar.gz                path to archive, currently supported:
                                 tar.gz
-
-  -c hash                       hash to use, one of
-                                md5, sha1, sha224, sha256, sha384, sha512
-                                default is md5
 
   -v | --verbose                output every command executed
 EOF
@@ -38,7 +34,6 @@ while true ; do
   case "$1" in
     -h|-help|--help) usage ; exit ;;
     -v|--verbose) VERBOSE=yes ; shift ;;
-    -c) shift ; HASH=$1 ; shift ;;
     *) break ;;
   esac
 done
