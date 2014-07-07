@@ -12,7 +12,7 @@
 # function to display usage
 usage() { cat << EOF
 Usage:
-  <submit-command> [submit-args] $0 [-v] [--remove-original-data] [-c hash] /path/to/data-dir/ /path/to/archive.tar.gz
+  <submit-command> [submit-args] $0 [-v] [-c hash] /path/to/data-dir/ /path/to/archive.tar.gz
 
   -h | -help | --help           shows this help text
 
@@ -27,13 +27,11 @@ Usage:
                                 default is md5
 
   -v | --verbose                output every command executed
-
-  --remove-original-data        remove original data after archive verification
 EOF
 }
 
 # set arguments to nothing
-unset DATA ARCHIVE HASH REMOVE_ORIGINAL_DATA VERBOSE
+unset DATA ARCHIVE HASH VERBOSE
 
 # parse parameters
 while true ; do
@@ -41,7 +39,6 @@ while true ; do
     -h|-help|--help) usage ; exit ;;
     -v|--verbose) VERBOSE=yes ; shift ;;
     -c) shift ; HASH=$1 ; shift ;;
-    --remove-original-data) REMOVE_ORIGINAL_DATA=yes ; shift ;;
     *) break ;;
   esac
 done
@@ -131,15 +128,3 @@ echo "[$(date)] [INFO] Creating the checksum of the archive itself ..."
 [[ -n $VERBOSE ]] && echo "[$(date)] [DEBUG] read-from-dd $ARCHIVE | $HASH_CMD | sed -e \"s|-$|$(basename $ARCHIVE)|\" >> $CHECKSUMS"
 
 read-from-dd "$ARCHIVE" | $HASH_CMD | sed -e "s|-$|$(basename $ARCHIVE)|" >> $CHECKSUMS
-
-# ------------------------------------------------------------------------------
-# optionally remove original data
-# ------------------------------------------------------------------------------
-
-if [[ $REMOVE_ORIGINAL_DATA == "yes" ]] ; then
-  echo "[$(date)] [INFO] Removing original data ..."
-
-  [[ -n $VERBOSE ]] && echo "[$(date)] [DEBUG] rm -rf $DATA"
-
-  rm -rf $DATA
-fi
