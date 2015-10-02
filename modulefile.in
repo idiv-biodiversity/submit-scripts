@@ -1,0 +1,10 @@
+#%Module1.0
+
+module-whatis "collection of ready-to-use submit scripts"
+
+conflict                submit-scripts
+
+set                     prefix          @prefix@
+set                     exec_prefix     @exec_prefix@
+
+prepend-path            PATH            @bindir@

@@ -10,7 +10,7 @@
   exit 0
 }
 
-source @libdir@/submit-scripts/util.sh
+source @pkglibdir@/util.sh
 source /etc/profile.d/000-modules.sh
 module load ncbi-blast
 module load pigz
@@ -20,4 +20,4 @@ BLAST_DB=$1 ; shift
 
 OUTPUT=$OUTPUT_DIR/result.gz
 
-read-from $QUERY | ${TRACE:+tracer} tblastn -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" | write-to $OUTPUT
+read-from $QUERY | ${TRACE:+tracer} blastx -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" | write-to $OUTPUT

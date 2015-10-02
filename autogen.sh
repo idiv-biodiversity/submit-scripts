@@ -1,2 +1,3 @@
-automake --add-missing --copy
-autoreconf --install
+#!/bin/sh
+
+autoreconf -fi

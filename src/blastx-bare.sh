@@ -10,7 +10,7 @@
   exit 0
 }
 
-source @libdir@/submit-scripts/util.sh
+source @pkglibdir@/util.sh
 source /etc/profile.d/000-modules.sh
 module load ncbi-blast
 
@@ -20,4 +20,4 @@ BLAST_DB=$1 ; shift
 mkdir -p $OUTPUT_DIR
 OUTPUT=$OUTPUT_DIR/result
 
-${TRACE:+tracer} tblastn -query $QUERY -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" -out $OUTPUT
+${TRACE:+tracer} blastx -query $QUERY -num_threads ${NSLOTS:-1} -db $BLAST_DB "$@" -out $OUTPUT

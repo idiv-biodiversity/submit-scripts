@@ -22,7 +22,7 @@ EOF
 exit 0
 }
 
-source @libdir@/submit-scripts/util.sh
+source @pkglibdir@/util.sh
 source /etc/profile.d/000-modules.sh
 module load tophat
 module load pigz
