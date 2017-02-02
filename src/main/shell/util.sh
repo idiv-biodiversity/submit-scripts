@@ -5,6 +5,33 @@
 export R_BUF_SIZE=${R_BUF_SIZE:-1M}
 export W_BUF_SIZE=${W_BUF_SIZE:-1M}
 
+# ---------------------------------------------------------------------------------------------------
+# bailout behaviour
+# ---------------------------------------------------------------------------------------------------
+
+# usage:
+#   trap 'bailout $LINENO $?' ERR
+#
+# $1 line number
+# $2 exit status
+bailout() {
+  echo "[$(date)] [ERROR] Last command around line $1 failed with exit status \"$2\". Bailing out. Please cleanup and try again."
+  exit 1
+}
+
+# use always directly after a pipe:
+#   foo | bar | baz | ...
+#   pipe_bailout $LINENO
+#
+# $1 line number
+pipe_bailout() {
+  for i in "${PIPESTATUS[@]}" ; do
+    [[ "x$i" != "x0" ]] && bailout $(expr $1 - 1) $i
+  done
+
+  return 0
+}
+
 # ------------------------------------------------------------------------------
 # reading
 # ------------------------------------------------------------------------------
