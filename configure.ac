@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([submit-scripts], [0.3.0])
+AC_INIT([submit-scripts], [0.4.0])
 AC_PROG_INSTALL
 AC_PROG_SED
 AC_CONFIG_FILES([Makefile])
