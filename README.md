@@ -6,42 +6,24 @@ This is a collection of ready-to-use submit scripts for high performance computi
 Motivation
 ----------
 
-Not all users know both their applications and scripting well enough to get the most out of their
-applications and to reduce the amount of maintenance they have with their scripts. The submit
-scripts provided by this project can be used almost as easy as the applications they are
-wrapping. They also consider many pitfalls and provide automatic ways to handle them, some of them
-are:
+Not all users know both their applications and scripting well enough to get the most out of their applications and to reduce the amount of maintenance they have with their scripts. The submit scripts provided by this project can be used almost as easy as the applications they are wrapping. They also consider many pitfalls and provide automatic ways to handle them, some of them are:
 
--   Using parameters for the submit scripts themselves greatly reduces the amount of submit scripts
-    needed and thus the potential for bit rot, error and maintenance. All provided submit scripts
-    accept various arguments to reduce the need to *hard-code* configuration (like the path to the
-    input file) in the script. Thus, the submission of the jobs defines them instead of the script
-    itself: a submit script should be just a convenient wrapper for the application it executes.
+-   Using parameters for the submit scripts themselves greatly reduces the amount of submit scripts needed and thus the potential for bit rot, error and maintenance. All provided submit scripts accept various arguments to reduce the need to *hard-code* configuration (like the path to the input file) in the script. Thus, the submission of the jobs defines them instead of the script itself: a submit script should be just a convenient wrapper for the application it executes.
 
--   Automatically handling the degree of parallelism reduces the amount of misappropriated
-    resources. It certainly may happen that users submit jobs with a different degree of parallelism
-    than the internal application is using. This may lead to either an overloaded system or an
-    under-utilized system. By automatically considering the submission requests these issues can be
-    avoided.
+-   Automatically handling the degree of parallelism reduces the amount of misappropriated resources. It certainly may happen that users submit jobs with a different degree of parallelism than the internal application is using. This may lead to either an overloaded system or an under-utilized system. By automatically considering the submission requests these issues can be avoided.
 
--   Handling I/O becomes more and more a problem with the distributed / networked file systems used
-    by computing clusters. If an application needs lots of IOPS to read or write a certain block of
-    data where this could have been done with fewer IOPS performance might degrade considerably. The
-    provided submit scripts are designed to both work around this problem by wrapping reading and
-    writing files with better block sizes and working with compressed data as much as possible.
+-   Handling I/O becomes more and more a problem with the distributed / networked file systems used by computing clusters. If an application needs lots of IOPS to read or write a certain block of data where this could have been done with fewer IOPS performance might degrade considerably. The provided submit scripts are designed to both work around this problem by wrapping reading and writing files with better block sizes and working with compressed data as much as possible.
 
-Also, there is a small **Submit Script API** used by most of the scripts to handle common
-problems. This API can be used to write additional submit scripts more easily.
+Also, there is a small **Submit Script API** used by most of the scripts to handle common problems. This API can be used to write additional submit scripts more easily.
 
 Requirements
 ------------
 
-- a **resource and job management system** (aka *job scheduler* aka *distributed resource management
-  system*) to submit the jobs, tested is currently just the *Sun Grid Engine 6.2u5* but similar
-  systems / clones should work as well
-- most of the (non-standard) software is required to be installed via a functional
-  [Environment Modules][modules] installation
-- some scripts may require non-standard tools like [pigz][] or [GNU Parallel][parallel]
+-   a **resource and job management system** (aka *job scheduler* aka *distributed resource management system*) to submit the jobs, tested is currently just the *Sun Grid Engine 6.2u5* but similar systems / clones should work as well
+
+-   most of the (non-standard) software is required to be installed via a functional [Environment Modules][modules] installation
+
+-   some scripts may require non-standard tools like [pigz][] or [GNU Parallel][parallel]
 
 Supported Applications
 ----------------------
@@ -66,9 +48,7 @@ The following helpful utilities are supported:
 Issues, Feature Requests and Contributions
 ------------------------------------------
 
-You are very welcome to open issues if something does not work the way you like, request features if
-you would really like some particular functionality or even better contribute it yourself. Please
-use the GitHub facilities [Issues][] and [Pull Requests][] for this.
+You are very welcome to open issues if something does not work the way you like, request features if you would really like some particular functionality or even better contribute it yourself. Please use the GitHub facilities [Issues][] and [Pull Requests][] for this.
 
 Installation
 ============
@@ -82,8 +62,7 @@ Installation
 Usage
 =====
 
-Since this project relies on a [Environment Modules][modules] installation anyway there is also a
-module file:
+Since this project relies on a [Environment Modules][modules] installation anyway there is also a module file:
 
     module load submit-scripts
 
@@ -112,22 +91,17 @@ To get help on a specific submit script just execute the wrapper with the `--hel
 
     submit-app --help
 
-Most scripts have some required arguments, like an input file. All other arguments get passed
-directly to the main application used in the script.
+Most scripts have some required arguments, like an input file. All other arguments get passed directly to the main application used in the script.
 
 Sequential and Parallel Jobs
 ----------------------------
 
-The degree of parallelism gets chosen automatically by however you submit the script, i.e. if you
-request the job to be parallel by say supplying `-pe smp 12` as part of your submit arguments the
-application will use 12 threads / processes / cores. All scripts are written so this is done
-automatically.
+The degree of parallelism gets chosen automatically by however you submit the script, i.e. if you request the job to be parallel by say supplying `-pe smp 12` as part of your submit arguments the application will use 12 threads / processes / cores. All scripts are written so this is done automatically.
 
 Example tblastn-bare
 --------------------
 
-The `tblastn-bare` script has two mandatory arguments, the query and the database, while all other
-arguments get supplied directly to `tblastn`, e.g.:
+The `tblastn-bare` script has two mandatory arguments, the query and the database, while all other arguments get supplied directly to `tblastn`, e.g.:
 
     qsub [submit-args] tblastn-bare query chr1.fa -word_size 3 -outfmt 6 -evalue 10
 
@@ -151,11 +125,7 @@ Submit any of the scripts with an additional environment variable `TRACE` set, e
 
     qsub -v TRACE=y [submit-args] script [args]
 
-If this environment variable is set, [strace][] will be used to create a compressed system trace of
-the main application used in the script. This trace can later be analyzed by using the
-[strace-analyzer][] script. Since these traces may be rather large in terms of file size, the traces
-are always compressed. Since analyzing the traces might take some time, there is also a ready-to-use
-strace-analyzer submit script:
+If this environment variable is set, [strace][] will be used to create a compressed system trace of the main application used in the script. This trace can later be analyzed by using the [strace-analyzer][] script. Since these traces may be rather large in terms of file size, the traces are always compressed. Since analyzing the traces might take some time, there is also a ready-to-use strace-analyzer submit script:
 
     qsub [submit-args] strace-analyzer /path/to/trace.gz
 
