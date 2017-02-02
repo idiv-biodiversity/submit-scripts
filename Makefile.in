@@ -15,7 +15,7 @@ SED             = @SED@
 PACKAGE_NAME = @PACKAGE_NAME@
 
 libs =  util.sh
-scripts = archiver blastn blastn-bare blastx blastx-bare segemehl strace-analyzer tblastn tblastn-bare tophat vcftools vcftools-recode
+scripts = archiver blastn blastn-bare blastx blastx-bare cutadapt cutadapt-bare segemehl strace-analyzer tblastn tblastn-bare tophat vcftools vcftools-recode
 
 sedit = $(SED) -e 's|@libdir[@]|$(libdir)|g' -e 's|@datadir[@]|$(datadir)|g'
 
