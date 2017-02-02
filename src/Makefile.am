@@ -8,7 +8,7 @@ $(scripts): %: %.sh
 	$(sedit) $< > $@
 
 submit-%: %
-	$(sedit) -e "s|@submitscript[@]|$<|g" submit-wrapper.sh > $@
+	$(sedit) -e "s|@submitscript[@]|$<|g" @srcdir@/submit-wrapper.sh > $@
 
 script_sources = \
 	archiver.sh \
@@ -37,4 +37,4 @@ libs = \
 	util.sh
 
 CLEANFILES = $(scripts) $(submit_scripts)
-EXTRA_DIST = submit-wrapper.sh $(libs) $(script_sources)
+EXTRA_DIST = @srcdir@/submit-wrapper.sh $(libs) $(script_sources)
