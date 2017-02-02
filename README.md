@@ -167,8 +167,3 @@ strace-analyzer submit script:
 [strace-analyzer]: http://clusterbuffer.wordpress.com/strace-analyzer/
 [Issues]: https://github.com/wookietreiber/submit-scripts/issues
 [Pull Requests]: https://github.com/wookietreiber/submit-scripts/pulls
-
-
----
-
-[![endorse](http://api.coderwall.com/wookietreiber/endorsecount.png)](http://coderwall.com/wookietreiber)
