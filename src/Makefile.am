@@ -1,6 +1,8 @@
 bin_SCRIPTS = $(submit_scripts)
 pkgdata_DATA = $(scripts)
-pkglib_DATA = $(libs)
+
+my_pkglibdir = $(pkglibdir)
+my_pkglib_DATA = $(libs)
 
 sedit = $(SED) -e 's|@pkglibdir[@]|$(pkglibdir)|g' -e 's|@datadir[@]|$(datadir)|g'
 
